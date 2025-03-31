@@ -1,16 +1,18 @@
 CC=gcc
 CFLAGS=-Wall 
 
-all: main
+TARGET=main
+
+all: $(TARGET)
 
 run:
-	./main
+	./$(TARGET)
 
-main: src/main.c
+$(TARGET): src/main.c
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 clean:
-	rm -f main 
+	rm -f $(TARGET) 
 
 .PHONY: all clean run
 
