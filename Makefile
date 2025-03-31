@@ -1,18 +1,22 @@
 CC=gcc
 CFLAGS=-Wall 
 
+BIN_DIR=bin
 TARGET=main
 
-all: $(TARGET)
+all: make_dirs $(BIN_DIR)/$(TARGET)
+
+make_dirs:
+	mkdir -p $(BIN_DIR)
 
 run:
-	./$(TARGET)
+	./$(BIN_DIR)/$(TARGET)
 
-$(TARGET): src/main.c
+$(BIN_DIR)/$(TARGET): src/main.c
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 clean:
-	rm -f $(TARGET) 
+	rm -rf $(BIN_DIR) 
 
-.PHONY: all clean run
+.PHONY: all make_dirs clean run
 
